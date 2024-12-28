@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "user.proto";
+
+
+message Subscription {
+  int64 id = 1;
+  int64 user_id = 2;
+  int64 country_id = 3;
+  bool trial = 4;
+  google.protobuf.Timestamp expiration_datetime = 5;
+}
+
+message Subscriptions {
+  repeated Subscription subscriptions = 1;
+}
+
+message GetSubscriptionsRequest {
+  int64 user_id = 1;
+  int64 country_id = 2;
+  bool active = 3;
+}
+
+message CreateSubscriptionRequest {
+  int64 user_id = 1;
+  int64 country_id = 2;
+  bool trial = 3;
+  google.protobuf.Timestamp expiration_datetime = 4;
+}
+
+message DeactivateSubscriptionRequest {
+  int64 subscription_id = 1;
+}
+
+message HasActiveSubscriptionResponse {
+  bool has_active_subscription = 1;
+}
+
+service SubscriptionService {
+  rpc GetSubscriptions(GetSubscriptionsRequest) returns (Subscriptions);
+  rpc ActivateSubscription(CreateSubscriptionRequest) returns(Subscription);
+  rpc HasActiveSubscription(UserId) returns (HasActiveSubscriptionResponse);
+  rpc DeactivateSubscription(DeactivateSubscriptionRequest) returns (google.protobuf.Empty);
+  rpc GetAllSubscriptions(google.protobuf.Empty) returns (Subscriptions);
+}

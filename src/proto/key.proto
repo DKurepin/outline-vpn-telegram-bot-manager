@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package proto;
+
+import "user.proto";
+
+message Key {
+  int64 id = 1;
+  bytes data = 2;
+  KeyType key_type = 3;
+  int64 subscription_id = 4;
+  int64 proxy_id = 5;
+}
+
+message CountriesKeys {
+  map<string, Key> keys = 1;
+}
+
+
+message KeyRequest {
+  int64 subscription_id = 1;
+}
+
+enum KeyType {
+  Text = 0;
+  File = 1;
+  Photo = 2;
+}
+
+service KeyService {
+  rpc GetKey(KeyRequest) returns (Key);
+  rpc GetActiveKeysByUser(UserId) returns (CountriesKeys);
+}

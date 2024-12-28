@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package proto;
+
+message User {
+  int64 id = 1;
+  string username = 2;
+  bool had_trial = 3;
+}
+
+message UserCreateRequest {
+  int64 id = 1;
+  string username = 2;
+}
+
+message UserId {
+  int64 id = 1;
+}
+
+service UserService {
+  rpc RegisterUser(UserCreateRequest) returns (User) {}
+  rpc GetUserByID(UserId) returns (User) {}
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/empty.proto";
+
+
+message Country {
+  int64 id = 1;
+  string name = 2;
+}
+
+message Countries {
+  repeated Country countries = 1;
+}
+
+message CountryName {
+  string name = 1;
+}
+
+message CountryCreateRequest {
+  int64 id = 1;
+  string name = 2;
+}
+
+service CountryService {
+  rpc GetAllCountries(google.protobuf.Empty) returns (Countries);
+  rpc GetCountryByName(CountryName) returns (Country);
+  rpc CreateCountry(CountryCreateRequest) returns (Country);
+}

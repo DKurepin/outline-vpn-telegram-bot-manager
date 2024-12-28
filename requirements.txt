@@ -1,0 +1,15 @@
+certifi==2024.8.30
+charset-normalizer==3.4.0
+googleapis-common-protos==1.65.0
+grpcio==1.67.1
+grpcio-tools==1.67.1
+idna==3.10
+protobuf==5.28.3
+pyTelegramBotAPI==4.23.0
+python-dotenv==1.0.1
+requests==2.32.3
+setuptools==70.0.0
+urllib3==2.2.3
+wheel==0.43.0
+pyTelegramBotAPI==4.23.0
+schedule==1.2.2
